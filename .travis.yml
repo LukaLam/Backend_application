@@ -2,7 +2,7 @@
 
 env:
   global:
-    - CC_TEST_REPORTER_ID=ABC123
+    - CC_TEST_REPORTER_ID=1fd47627409af6283040c758f8d771a32e26204bd9a9bfbc22f219e5ac549bcc
 language: ruby
 rvm:
   - 2.3.3
