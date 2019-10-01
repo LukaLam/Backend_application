@@ -17,8 +17,7 @@ before_script:
   - ./cc-test-reporter before-build
 deploy:
   provider: heroku
-  api_key:
-    secure: 344cc386-adb2-4be5-95ae-8bf63a41ae64
+  api_key: 344cc386-adb2-4be5-95ae-8bf63a41ae64
   app: rails-test-app-article
   on:
     repo: LukaLam/Backend_application
