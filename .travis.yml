@@ -1,26 +1,25 @@
-# single test suite, non-parallel build.
-
 env:
   global:
-    - CC_TEST_REPORTER_ID=1fd47627409af6283040c758f8d771a32e26204bd9a9bfbc22f219e5ac549bcc
+  - CC_TEST_REPORTER_ID=1fd47627409af6283040c758f8d771a32e26204bd9a9bfbc22f219e5ac549bcc
+  - secure: JSXgdpS1dT5VXDIG9ymnHz3iD6wD4pwfBRY4qBDw126STIRIBX0KwNRcEOlobHHFH4P3Qe8dTib8ut60E/ukoVw/CtERVpfrUPGow1cP/R+clTPkzvz351qADPvRBKAoVVD3wKkbhjmtfA+XLRckpUaQS/wPZ8GZ38t4D6i1W4gJeDKsgw7L4dWERtjLGaOndbKPzgcN1YFeUyJ0RJ6whk8cJ29gypMB5aWJO8OZyB7IVqUsJVmSEEAnD2Feuje2pfFniWA6g9Uo4jq0n8zOkxYKOqLJd3Wkt7JM2/jQZ2nVz56zadQxEcccoR7OTdX23WAI+lZPK0nM8+xSXc3sdLRgGAFHEE3xaBW3B30vDcjk7KleWGjnbgpQw8UrxJrUEH3lsNeZHSGZsHWjhMk3113AOCA3bVr9CewxEQR/MAiTJRTT9HVf2PRjgX/pjDN9qjdeYn/5G4yOv0xvTpl5O/CKN24TN0V+H4OjrcZQhbZ1gRLa1KeulTUDkAerQOC6jPTsKMWb6RYVSExU2fYWUJX7w379F7hVk9ami1GZ0sBPz1Foms//7Xyq4FZUAp2xZfQgdAKzfZPj2RHYigRAalyF52wxjC9GUZixpj9GbJdlXjytber0nHK0ju4Ipt2WdhWb92SGiglIbrewg1CmL4Og6kPOHIUB9TsaBTrvwBA=
 language: ruby
 cache:
 - bundler
 rvm:
-  - 2.3.3
+- 2.5.6
 before_script:
-  - bundle exec rake db:create
-  - bundle exec rake db:migrate 
-  - bundle exec rake assets:precompile
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+- bundle exec rake db:create
+- bundle exec rake db:migrate
+- bundle exec rake assets:precompile
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+  > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- "./cc-test-reporter before-build"
 deploy:
   provider: heroku
-  api_key: f13904b8-0d4c-44a9-ade1-db13d03d9582
+  api_key: secure:kn2+fhF8PwnJnpHeIlRo7UFvKhT+Mx/4c96nWTR6FwJoGL7kKI1fS4x7asilWJVCiGjAayXbelN4GaoV0X2Eg/I8hWu4VuHSdTHQnUp6vpStNXpK47kCHkh1V5UQcZXJB/cvXZvTDZlKA8Wi96kn+wAY5tOVhdPfD2im66GBWRRPyEGF2oR+8inVrWHQsXifB6OV9mVCwrg0F/XpjC3IwbmgXp42W/jfXUoht8R6AmeGYHKYELq1FNiWz5m6whVzY6TLEdRUwNXtLY+FMUWGPSNts+ZTmjPfYfi4E0BMk2p88xRjwHW81e+C6XGA6AhgREPoJVFVbDnKr86eYyxhk8EOXdVrHRMXefanWRyIx5qdsMwt19Foc++VowwA9Jj8JIgiKxSv8Eas24jQv19fE+N3SenEwZ4KMDQB/c7sbQ4HULYMoX0305wedYDF2Gn11NidOs6oFoyVPubeSeL/YqPznZm8gCskdXk+AS2aII8uyVNNVep5UM3GCQZLBteEnBN1lVxO1mj1v4NyHMRDXEKpNJ979Zdj9PITyEzv1WMaK61JwDaD84WVizE5lreK1OpY6UZJExPFgCZvNUNNjlNfJ5CjzQWioJ+wpMixrktFYYxReD4yFgfHb/2gJAXffkuDQZCcYs01yPbGrx2a4D7doAC0E0/nesgr/WYfHis=
 script:
-  - bundle exec rails db:migrate RAILS_ENV=test
-  - bundle exec rake
+- bundle exec rails db:migrate RAILS_ENV=test
+- bundle exec rake
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-  
+- "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
