@@ -4,12 +4,24 @@ env:
   global:
     - CC_TEST_REPORTER_ID=1fd47627409af6283040c758f8d771a32e26204bd9a9bfbc22f219e5ac549bcc
 language: ruby
+cache:
+- bundler
 rvm:
   - 2.3.3
 before_script:
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate 
+  - bundle exec rake assets:precompile
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
+deploy:
+  provider: heroku
+  api_key:
+    secure: 344cc386-adb2-4be5-95ae-8bf63a41ae64
+  app: rails-test-app-article
+  on:
+    repo: LukaLam/Backend_application
 script:
   - bundle exec rails db:migrate RAILS_ENV=test
   - bundle exec rake
