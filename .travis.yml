@@ -17,8 +17,7 @@ before_script:
 - "./cc-test-reporter before-build"
 deploy:
   provider: heroku
-  api_key: 
-    secure: opcOKSgrzyAa51ReyK4Q7clBEw4LVcSKfh+eEv0UssttM/EHsWYNxsb2q5KwPHr2FKbTRY3D6wL+igE3gSJJ9icyI8dPRkK6CsIeGRjAcdKUPIK0veAXianccSBtI9HMV/dsqA57LjpCxx/sD+BxIXa0MBG8OKmNUxy6QcNXrs8GbbyWbQnEPxpsVIpPm/aDdouEdeWNDcOHcKeRlJGa4NmnyZL8KZRmidqWVf7XAWNNeM2Z/Uv3bmpX9geXU7KlptDpjSo3dF0StoT2nROhcHqYRzFqAZ6iYdIeJhM8P1bLTMjyP4aw6ylPGZme7wpUQV97csLWunXFtycyBmoBH69tLk3d0WwnHSfU3FiNYi2Uh9BoODif0SXWqsm82TdMC7Tk7hlAAUGpN6uBpRmWXsmFZmSrVCauT2ifJsJGGVL/34vgpdEjUP0OKufxyi5+YeJ4+qs9qLN7nI382TJyvSdSw/HnUgo6JeUM8DIDndQmb+FwH5TAe0u4ilzgZWsz1FYeXVnLvrjivXUrz5VkNVth0N3Vd91fw0vrp8s0nFmzsmjizRc34Hh/LwTO5G96CDF2yAKe2aqzD/QNGFc9czD77SLHtuFqYwy6HHxzv9/kk8NsAFOHZ5YdffNo4Xm9yKzvvqnh2CReLoLKSt9NCh8jBzlruvazX5thb02Rn6M=
+  api_key: 033e8143-8c4e-4149-9ff7-a70a4833f1c9
 script:
 - bundle exec rails db:migrate RAILS_ENV=test
 - bundle exec rake
