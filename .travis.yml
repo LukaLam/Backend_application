@@ -22,6 +22,9 @@ deploy:
   app: backendaplication
   on:
     repo: LukaLam/Backend_application
+  run:
+  - "bundle install --without development test"
+  - "bundle exec rails db:migrate"
 script:
 - bundle exec rails db:migrate RAILS_ENV=test
 - bundle exec rake
