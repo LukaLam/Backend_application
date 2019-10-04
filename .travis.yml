@@ -8,25 +8,22 @@ cache:
 rvm:
 - 2.5.6
 before_script:
-- bundle exec rake db:create
-- bundle exec rake db:migrate
-- bundle exec rake assets:precompile
 - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
   > ./cc-test-reporter
 - chmod +x ./cc-test-reporter
 - "./cc-test-reporter before-build"
-deploy:
-  provider: heroku
-  api_key:
-    secure: IK6ujAddzBnVbu6MrZdVo23bXRmis2RWVdzdCIDwtyTfmwd8N/po+eE21FzHHjlxd7ckRJouzq1E7IrxQjBBL7RrxSlmp+Khh1LMHzFy3z6068kbY9yg7pC4DTrpBWdWb8i8tVd7/sC8wl11JHq+EUc4FPtXUQW2Itd3AbdZYtJIClXJuk53k+lO5HnK+0SqU3i05i90Dk8bcV8S2EGqOehLpF7hkrOFcvu44trmj/4c6/mF5EKkdTJ0MeVcGDd3c8r2CFhEMV7cAv5obJADRiNhn0Lu7IVSIU772ifZm00+lYteYPfuIN58TDByig0XG/RuEAHQ/Jt9WC1D0+J6Fe6rNj5zW1G8FYCeUbuC+5WQyGL+MbMhKoXAw2j0/WUM5FjIAkUSaRQ6ZgAva2/MQMvxZEohYsFMi+9HcaW3y432CrcAEwQm2i6F5pP8GVxmkyn3qxr8+tkXjOgFRMPuyExmouxw2YBhbjGHeeOm5WISh9n9UwpwLb0vjg3Exya9h7UVr9uxvN7e6eA51+gp54e0TgEyBnKRFKMLqn0KR1zdthiO/FuNdEvHWQV/fjbeRm/esbVfk8HajJz16BhQN14V1QvkMhwA9c+X1kMi8Q4IQv+U5EW03bq1uBvnNXYNnrahjWp3v8D24kYC7VQt819w/4/r571R38c+Vjfer9U=
-  app: backendaplication
-  on:
-    repo: LukaLam/Backend_application
-  run:
-  - "bundle install --without development test"
-  - "bundle exec rails db:migrate"
 script:
 - bundle exec rails db:migrate RAILS_ENV=test
 - bundle exec rake
 after_script:
 - "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: IK6ujAddzBnVbu6MrZdVo23bXRmis2RWVdzdCIDwtyTfmwd8N/po+eE21FzHHjlxd7ckRJouzq1E7IrxQjBBL7RrxSlmp+Khh1LMHzFy3z6068kbY9yg7pC4DTrpBWdWb8i8tVd7/sC8wl11JHq+EUc4FPtXUQW2Itd3AbdZYtJIClXJuk53k+lO5HnK+0SqU3i05i90Dk8bcV8S2EGqOehLpF7hkrOFcvu44trmj/4c6/mF5EKkdTJ0MeVcGDd3c8r2CFhEMV7cAv5obJADRiNhn0Lu7IVSIU772ifZm00+lYteYPfuIN58TDByig0XG/RuEAHQ/Jt9WC1D0+J6Fe6rNj5zW1G8FYCeUbuC+5WQyGL+MbMhKoXAw2j0/WUM5FjIAkUSaRQ6ZgAva2/MQMvxZEohYsFMi+9HcaW3y432CrcAEwQm2i6F5pP8GVxmkyn3qxr8+tkXjOgFRMPuyExmouxw2YBhbjGHeeOm5WISh9n9UwpwLb0vjg3Exya9h7UVr9uxvN7e6eA51+gp54e0TgEyBnKRFKMLqn0KR1zdthiO/FuNdEvHWQV/fjbeRm/esbVfk8HajJz16BhQN14V1QvkMhwA9c+X1kMi8Q4IQv+U5EW03bq1uBvnNXYNnrahjWp3v8D24kYC7VQt819w/4/r571R38c+Vjfer9U=
+  app: backendaplication
+  run:
+  - "bundle install --without development test"
+  - "bundle exec rails db:migrate"
+
